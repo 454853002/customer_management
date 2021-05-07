@@ -3,6 +3,7 @@ package com.fuyu.utils;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
+
 public  class MysqlUtils {
 	private static String driver = null;
 	private static String url = null;
@@ -11,6 +12,9 @@ public  class MysqlUtils {
 	static {
 		try {
 			InputStream in = MysqlUtils.class.getClassLoader().getResourceAsStream("db.properties");
+			if (in == null){
+				System.out.println("没有读取到文件");
+			}
 			Properties properties = new Properties();
 			properties.load(in);
 			driver = properties.getProperty("driver");
